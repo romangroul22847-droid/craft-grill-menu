@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CRAFT & GRILL - DEMO-Menu</title>
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="menu-container">
+	
+	<header class="header">
+		<div class="logo">🔥 CRAFT & GRILL</div>
+		<p class="subtitle">Restobar & Craft Beer</p>
+	</header>
+	
+	<nav class="categories">
+		<button class="cat-btn active" data-category="all">✨ Wszystkie</button>
+		<button class="cat-btn" data-category="promocje">🔥 Promocje</button>
+		<button class="cat-btn" data-category="przekaski">🍔 Przekąski</button>
+		<button class="cat-btn" data-category="napoje">🍺 Napoje</button>
+		<button class="cat-btn" data-category="desery">🍰 Desery</button>
+	</nav>
+	
+	<main class="menu-sections">
+	
+		<section class="section" id="promocje">
+			<h2 class="section-title">🔥 Oferty Specjalne</h2>
+			
+			<div class="promo-card">
+				<span class="badge">Happy Hour</span>
+				<h3>Poniedziałek - Czwartek | 16:00 - 18:00</h3>
+				<p><strong>-20%</strong> na wszystkie piwa lane i przekąski z karty!</p>
+			</div>
+		
+		<div class="menu-item highlight">
+			<div class="item-info">
+				<h3 class="item-title">Zestaw „Dla Ekipy”</h3>
+				<p class="item-desc">2L wybranego piwa lanego + Duża deska mięsnych przekąsek BBQ.</p>
+			</div>
+			<div class="item-price">120 PLN</div>
+		</div>
+	</section>
+	
+	<section class="section" id="przekaski">
+		<h2 class="section-title">🍔 Przekąski & Dania</h2>
+		
+		<div class="menu-item">
+			<div class="item-info">
+				<h3 class="item-title">Klasyczny Burger CRAFT</h3>
+				<p class="item-desc">Soczysta wołowina, ser cheddar, ogórek kiszony, świeży pomidor, sos autorski. W zestawie z frytkami.</p>
+			</div>
+			<div class="item-price">29 PLN</div>
+		</div>
+		
+		<div class="menu-item">
+			<div class="item-info">
+				<h3 class="item-title">Paluszki Serowe</h3>
+				<p class="item-desc">Zapiekana chrupiąca mozzarella podawana z sosami żurawinowym i czosnkowym (6 szt.).</p>
+			</div>
+			<div class="item-price">24 PLN</div>
+		</div>
+	</section>
+	
+	<section class="section" id="napoje">
+		<h2 class="section-title">🍺 Piwo & Napoje</h2>
+		
+		<div class="menu-item">
+			<div class="item-info">
+				<h3 class="item-title">Craft Gold (Lany)</h3>
+				<p class="item-desc">Klasyczny jasny lager o delikatnej goryczce. 0.5L</p>
+			</div>
+			<div class="item-price">14PLN</div>
+		</div>
+		
+		<div class="menu-item">
+			<div class="item-info">
+				<h3 class="item-title">Craft Dark (Lany)</h3>
+				<p class="item-desc">Esencjionalny ciemny lager o nutach słodowych. 0.5L</p>
+			</div>
+			<div class="item-price">16 PLN</div>
+		</div>
+		
+		<div class="menu-item">
+			<div class="item-info">
+				<h3 class="item-title">Domowa Lemoniada</h3>
+				<p class="item-desc">Orzeźwiająca lemoniada cytrusowa z dodatkiem świeżej mięty. 0.4L</p>
+			</div>
+			<div class="item-price">15 PLN</div>
+		</div>
+	</section>
+	
+	<section class="section" id="desery">
+		<h2 class="section-title">🍰 Desery</h2>
+		
+		<div class="menu-item">
+			<div class="item-info">
+				<h3 class="item-title">Fondant Czekoladowy</h3>
+				<p class="item-desc">Ciepłe ciastko czekoladowe z płynnym środkiem, podawane z gałką lodów waniliowych.</p>
+			</div>
+			<div class="item-price">22 PLN</div>
+		</div>
+		<div class="menu-item">
+			<div class="item-info">
+				<h3 class="item-title">Sernik Nowojorski</h3>
+				<p class="item-desc">Aksamitny klasyczny sernik z polewą truskawkową.</p>
+			</div>
+			<div class="item-price">20 PLN</div>
+		</div>
+	</section>
+	
+	</main>
+	
+	<footer class="footer">
+		<p>Smacznego!🍻</p>
+		<small>Ceny zawierają podatek VAT.</small>
+	</footer>
+	
+	
+<script>
+	const buttons = document.querySelectorAll('.cat-btn');
+	const sections = document.querySelectorAll('.section');
+	
+	buttons.forEach(button => {
+		button.addEventListener('click', ()=> {
+			buttons.forEach(btn => btn.classList.remove('active'));
+			button.classList.add('active');
+			
+			const category = button.getAttribute('data-category');
+			
+			if (category ==='all' ) {
+				sections.forEach(sec => sec.classList.remove('hidden'));
+				window.scrollTo({ top: 0, behavior: 'smooth' });
+				} else {
+					sections.forEach(sec => {
+						if (sec.id === category) {
+							sec.classList.remove('hidden');
+							sec.scrollIntoView({ behavior: 'smooth' });
+						} else {
+							sec.classList.add('hidden');
+						}
+					});
+				}
+			});
+		});
+</script>
+	</div>
+</body>
+</html>
