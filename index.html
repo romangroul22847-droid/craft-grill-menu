@@ -124,26 +124,51 @@
 	
 	buttons.forEach(button => {
 		button.addEventListener('click', ()=> {
-			buttons.forEach(btn => btn.classList.remove('active'));
-			button.classList.add('active');
-			
 			const category = button.getAttribute('data-category');
 			
 			if (category ==='all' ) {
-				sections.forEach(sec => sec.classList.remove('hidden'));
 				window.scrollTo({ top: 0, behavior: 'smooth' });
-				} else {
-					sections.forEach(sec => {
-						if (sec.id === category) {
-							sec.classList.remove('hidden');
-							sec.scrollIntoView({ behavior: 'smooth' });
-						} else {
-							sec.classList.add('hidden');
-						}
-					});
+			} else {
+				const targetSection = document.getElementById(category);
+				if (targetSection) {
+					targetSection.scrollIntoView({ behavior: 'smooth' });
+					}
 				}
 			});
 		});
+		
+		window.addEventListener('scroll', ()=> {
+			let current = 'all';
+			const scrollPosition = window.scrollY + 150;
+			
+			if (window.scrollY < 100) {
+				current = 'all';
+			} else {
+				sections.forEach(section => {
+					const sectionTop = section.offsetTop;
+					const sectionHeight = section.offsetHeight;
+					
+					if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight - 10) {
+						current = section.getAttribute('id');
+					} 
+				});
+				
+				if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
+					const lastSection = sections[sections.length - 1];
+					if (lastSection) {
+						current = lastSection.getAttribute('id');
+					}
+				}
+			}
+							
+			buttons.forEach(btn => {
+				btn.classList.remove('active');
+				if (btn.getAttribute('data-category') === current) {
+					btn.classList.add('active');
+				}
+			});
+		});
+		
 </script>
 	</div>
 </body>
