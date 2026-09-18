@@ -39,11 +39,16 @@
 	}
 	
 	.categories {
+		position: sticky;
+		top: 0;
+		z-index:100;
+		background-color: #0f0f10;
+		
 		display: flex;
 		gap: 8px;
 		overflow-x: auto;
 		white-space: nowrap;
-		padding-bottom: 12px;
+		padding: 10px 0;
 		margin-bottom: 20px;
 		-webkit-overflow-scrolling: touch;
 		scrollbar-width: none;
@@ -117,6 +122,11 @@
 		color: #ccc;
 	}
 	
+	.menu-sections {
+		min-height: 100vh;
+		padding-bottom: 50vh;
+	}
+	
 	.menu-item {
 		background-color: #161618;
 		border: 1px solid #242426;
@@ -180,8 +190,4 @@
 	
 	html {
 		scroll-behavior: smooth;
-	}
-	
-	.section.hidden {
-		display: none;
 	}
